@@ -1,0 +1,567 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>包青天.skill · 铁面无私判需求</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<script>
+window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "theme": "正典",
+  "seal": "#a8302d",
+  "heroSize": 102,
+  "density": "标准"
+}/*EDITMODE-END*/;
+(function(){
+  var d=window.TWEAK_DEFAULTS, root=document.documentElement;
+  var dark=d.theme==="夜判";
+  root.setAttribute("data-theme", dark?"dark":"light");
+  root.style.setProperty("--c-seal", d.seal);
+  root.style.setProperty("--c-seal-shadow", ({"#a8302d":"#7d211e","#8d211d":"#641512","#b8472c":"#8a3219","#2f4a52":"#1d3036"})[d.seal]||"#7d211e");
+  root.style.setProperty("--hero-max", d.heroSize+"px");
+  root.style.setProperty("--sec-pad", ({"紧凑":"56px","标准":"78px","舒朗":"104px"})[d.density]||"78px");
+  document.addEventListener("DOMContentLoaded", function(){
+    var v=dark?"bao-light.png":"bao-dark.png";
+    document.querySelectorAll(".wm img, .lock .logo img").forEach(function(i){ i.setAttribute("src","assets/"+v); });
+  });
+})();
+</script>
+<style>
+:root{
+  --c-bg:#e5e5e5; --c-paper:#ececea; --c-ink:#1a1a1a; --c-btn:#47494b;
+  --c-on-dark:#e5e5e5;
+  --c-border-soft:rgba(71,73,75,0.20);
+  --c-border-strong:rgba(71,73,75,0.42);
+  --c-muted:#5c5e60;
+  --c-surface:rgba(255,255,255,.40); --c-surface-2:rgba(255,255,255,.58);
+  --c-bar:rgba(229,229,229,.86);
+  --c-footer-bg:#1a1a1a; --c-footer-fg:rgba(229,229,229,.55); --c-footer-strong:#e5e5e5;
+  --hero-max:104px; --sec-pad:78px;
+  --c-seal:#a8302d; --c-seal-shadow:#7d211e; --c-seal-tint:#f0dfc4;
+  --f-serif:"Noto Serif SC","Source Han Serif SC","Songti SC","STSong","SimSun","FangSong",Georgia,serif;
+  --f-sans:"Inter","PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+[data-theme="dark"]{
+  --c-bg:#1a1a1a; --c-paper:#161616; --c-ink:#e9e9e7; --c-btn:#c4c5c6; --c-on-dark:#1a1a1a;
+  --c-border-soft:rgba(229,229,229,.16); --c-border-strong:rgba(229,229,229,.32); --c-muted:#9a9b9c;
+  --c-surface:rgba(255,255,255,.05); --c-surface-2:rgba(255,255,255,.09);
+  --c-bar:rgba(26,26,26,.86);
+  --c-footer-bg:#000; --c-footer-fg:rgba(229,229,229,.5); --c-footer-strong:#e5e5e5;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--c-bg);color:var(--c-ink);font-family:var(--f-sans);font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+::selection{background:var(--c-btn);color:var(--c-on-dark)}
+a{color:inherit;text-decoration:none}
+.no-trans *,.no-trans *::before,.no-trans *::after{transition:none !important}
+
+.eyebrow{font-family:var(--f-mono);font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--c-muted)}
+.col{max-width:880px;margin:0 auto;padding:0 32px}
+
+/* ============ top bar ============ */
+.bar{position:sticky;top:0;z-index:50;background:var(--c-bar);backdrop-filter:blur(8px);border-bottom:1px solid var(--c-border-soft)}
+.bar .col{display:flex;align-items:center;justify-content:space-between;height:62px}
+.lock{display:flex;align-items:center;gap:11px}
+.lock .logo{width:34px;height:34px;display:flex;align-items:center;justify-content:center}
+.lock .logo img{width:100%;height:100%;object-fit:contain;display:block}
+.lock b{font-family:var(--f-serif);font-weight:700;font-size:18px;letter-spacing:.12em;line-height:1}
+.lock i{font-family:var(--f-mono);font-style:normal;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--c-muted);display:block;margin-top:3px}
+.bar .cta{font-family:var(--f-serif);font-weight:600;font-size:13.5px;letter-spacing:.06em;border:1px solid var(--c-border-strong);padding:9px 18px;transition:.18s}
+.bar .cta:hover{background:var(--c-ink);color:var(--c-on-dark);border-color:var(--c-ink)}
+
+/* ============ hero ============ */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--c-border-soft)}
+.hero .wm{position:absolute;top:50%;left:50%;transform:translate(-50%,-48%);width:760px;max-width:135%;opacity:.10;pointer-events:none;user-select:none;z-index:0}
+.hero .wm img{width:100%;display:block}
+.hero .col{position:relative;z-index:1;padding-top:104px;padding-bottom:96px;text-align:center}
+.hero .kick{margin-bottom:30px;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+.hero .kick span{font-family:var(--f-mono);font-size:11px;letter-spacing:.24em;color:var(--c-muted)}
+.hero .kick .dot{width:4px;height:4px;background:var(--c-seal);border-radius:50%;transform:translateY(-1px)}
+.hero h1{font-family:var(--f-serif);font-weight:900;font-size:clamp(46px,9vw,var(--hero-max));letter-spacing:.04em;line-height:1.04;margin:0}
+.hero .sub{font-family:var(--f-serif);font-weight:400;font-size:clamp(17px,2.4vw,22px);color:var(--c-btn);margin:24px 0 0;letter-spacing:.04em}
+.hero .lede{font-family:var(--f-serif);font-weight:300;font-size:15.5px;line-height:1.95;color:var(--c-muted);max-width:560px;margin:34px auto 0}
+.hero .lede b{color:var(--c-ink);font-weight:500}
+.hero .acts{margin-top:42px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn{font-family:var(--f-serif);font-weight:600;font-size:15px;letter-spacing:.06em;padding:14px 30px;border:1px solid var(--c-ink);transition:.18s;cursor:pointer;display:inline-flex;align-items:center;gap:10px}
+.btn-fill{background:var(--c-ink);color:var(--c-on-dark)}
+.btn-fill:hover{background:#000;border-color:#000}
+.btn-ghost{background:transparent;color:var(--c-ink);border-color:var(--c-border-strong)}
+.btn-ghost:hover{border-color:var(--c-ink)}
+.btn .ar{font-family:var(--f-mono);font-weight:500}
+
+/* hero seal */
+.hero .seal{position:absolute;right:max(32px,calc(50% - 408px));top:88px;width:74px;height:84px;background:var(--c-seal);color:var(--c-seal-tint);font-family:var(--f-serif);font-weight:700;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;line-height:1;border:2px solid var(--c-seal-shadow);box-shadow:inset 0 0 0 1.5px var(--c-seal-shadow);z-index:2;transform:rotate(-4deg)}
+.hero .seal span{display:flex;align-items:center;justify-content:center;font-size:25px}
+@media(max-width:740px){.hero .seal{display:none}}
+
+/* ============ section scaffold ============ */
+section{border-bottom:1px solid var(--c-border-soft)}
+.sec{padding:var(--sec-pad) 0}
+.slab{display:flex;align-items:baseline;justify-content:space-between;gap:18px;margin-bottom:42px;border-bottom:1px solid var(--c-border-strong);padding-bottom:14px}
+.slab .t{font-family:var(--f-serif);font-weight:700;font-size:27px;letter-spacing:.02em}
+.slab .t i{font-style:normal;color:var(--c-muted);font-weight:400}
+.slab .n{font-family:var(--f-mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--c-muted);white-space:nowrap}
+
+/* ============ reframe (不是X，而是Y) ============ */
+.reframe{display:grid;grid-template-columns:1fr;gap:0}
+.rf{display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:center;padding:26px 4px;border-bottom:1px solid var(--c-border-soft)}
+.rf:last-child{border-bottom:0}
+.rf .no{font-family:var(--f-serif);font-weight:400;font-size:19px;color:var(--c-muted);text-align:right}
+.rf .no s{text-decoration:line-through;text-decoration-color:var(--c-border-strong)}
+.rf .ar{font-family:var(--f-mono);font-size:15px;color:var(--c-seal)}
+.rf .ye{font-family:var(--f-serif);font-weight:700;font-size:25px;letter-spacing:.01em}
+@media(max-width:640px){.rf{grid-template-columns:1fr;gap:8px;text-align:left}.rf .no{text-align:left}.rf .ar{display:none}}
+
+/* ============ 判牍卡样例 ============ */
+.sec.sample{padding-top:calc(var(--sec-pad) * .7);padding-bottom:calc(var(--sec-pad) * .62)}
+.sec.sample .slab{margin-bottom:0}
+.vgallery{margin-top:30px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:var(--c-border-strong) transparent}
+.vgallery::-webkit-scrollbar{height:7px}
+.vgallery::-webkit-scrollbar-thumb{background:var(--c-border-strong)}
+.vcards{display:flex;gap:28px;width:max-content;padding:4px max(32px,calc(50% - 720px)) 26px}
+
+/* tier palettes — fixed regardless of site theme */
+.vcard{
+  --card-bg:#f5f4f1; --card-ink:#191919; --card-muted:#6b6b66;
+  --card-line:rgba(25,25,25,.13); --card-line-strong:rgba(25,25,25,.34);
+  --card-track:rgba(25,25,25,.12); --card-surface:rgba(255,255,255,.55);
+  position:relative;flex:0 0 auto;width:466px;height:828px;padding:24px 28px 22px;overflow:hidden;scroll-snap-align:center;
+  background:var(--card-bg);border:1px solid var(--card-line-strong);box-shadow:0 18px 46px rgba(0,0,0,.13);
+  font-family:var(--f-serif);color:var(--card-ink)
+}
+.vcard.t-black{
+  --card-bg:#181818; --card-ink:#ededeb; --card-muted:#9b9b97;
+  --card-line:rgba(237,237,235,.15); --card-line-strong:rgba(237,237,235,.30);
+  --card-track:rgba(237,237,235,.14); --card-surface:rgba(255,255,255,.06)
+}
+.vcard.t-gray{
+  --card-bg:#cbcac5; --card-ink:#1c1c1b; --card-muted:#56564f;
+  --card-line:rgba(25,25,25,.15); --card-line-strong:rgba(25,25,25,.36);
+  --card-track:rgba(25,25,25,.16); --card-surface:rgba(255,255,255,.40)
+}
+.vcard.t-white{
+  --card-bg:#fafaf8; --card-ink:#161616; --card-muted:#6b6b66;
+  --card-line:rgba(22,22,22,.12); --card-line-strong:rgba(22,22,22,.30);
+  --card-track:rgba(22,22,22,.11); --card-surface:rgba(255,255,255,.70)
+}
+.vcard::after{content:"";position:absolute;inset:18px;border:1px solid var(--card-line);pointer-events:none}
+.vwm{position:absolute;top:-14px;left:50%;transform:translateX(-46%);width:300px;opacity:.11;pointer-events:none;user-select:none;z-index:0}
+.vcard.t-gray .vwm{opacity:.14}
+.vseal{position:absolute;top:18px;right:30px;width:54px;height:62px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;place-items:center;background:var(--c-seal);border:2px solid var(--c-seal-shadow);box-shadow:inset 0 0 0 1.5px var(--c-seal-shadow);color:var(--c-seal-tint);font-weight:700;font-size:18px;line-height:1;transform:rotate(-4deg);z-index:3}
+
+.vscene{position:relative;height:46px;display:flex;align-items:center;justify-content:space-between;z-index:1}
+.vbrand{display:flex;align-items:center;gap:10px;z-index:2}
+.vbrand img{width:34px;height:34px;object-fit:contain}
+.vbrand b{display:block;font-size:18px;line-height:1;font-weight:700}
+.vbrand span{display:block;margin-top:5px;color:var(--card-muted);font-family:var(--f-mono);font-size:7.5px;letter-spacing:.1em;line-height:1}
+.vcaseno{min-width:90px;padding:6px 10px 5px;border:1px solid var(--card-line-strong);font-family:var(--f-mono);font-size:10px;text-align:center;line-height:1;background:var(--card-surface);z-index:2}
+
+.vtitle{margin-top:18px;position:relative;z-index:1}
+.vtitle h3{margin:0;font-size:37px;line-height:1.05;font-weight:800;letter-spacing:.01em}
+.vsubtitle{margin-top:7px;color:var(--card-muted);font-size:14px;line-height:1.5}
+.vverdict{margin-top:12px;display:flex;align-items:center;gap:10px;min-height:25px;font-size:11px}
+.vtag{padding:5px 9px 4px;border:1px solid var(--card-line-strong);font-weight:700;line-height:1}
+.vcard.t-black .vtag{background:var(--c-seal);border-color:var(--c-seal-shadow);color:var(--c-seal-tint)}
+.vcard.t-white .vtag{background:var(--card-ink);border-color:var(--card-ink);color:var(--card-bg)}
+.vverdict-text{color:var(--card-muted);font-family:var(--f-mono)}
+.vverdict-text b{color:var(--card-ink)}
+
+.vrule{height:1px;margin:13px 0;background:var(--card-line)}
+.vlabel{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;color:var(--card-muted);font-family:var(--f-mono);font-size:9px;letter-spacing:.06em;line-height:1.2}
+.vlabel b{color:var(--card-ink);font-family:var(--f-serif);font-size:11px;font-weight:500}
+
+.vmetrics{display:grid;grid-template-columns:124px 1fr;gap:22px;align-items:center}
+.vgauge{position:relative;width:116px;height:116px;border-radius:50%;background:conic-gradient(var(--c-seal) calc(var(--score) * 1%),var(--card-track) 0)}
+.vgauge::before{content:"";position:absolute;inset:7px;border-radius:50%;background:var(--card-bg)}
+.vnum{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.vnum strong{display:block;font-size:42px;line-height:.86}
+.vnum small{display:block;margin-top:7px;color:var(--card-muted);font-family:var(--f-mono);font-size:8px;letter-spacing:.08em;line-height:1}
+.vbars{display:grid;gap:10px}
+.vbar{display:grid;grid-template-columns:72px 1fr 26px;gap:10px;align-items:center;font-size:12px}
+.vbar-name{color:var(--card-muted)}
+.vtrack{height:5px;background:var(--card-track)}
+.vfill{display:block;height:100%;width:var(--v);background:var(--card-ink)}
+.vbar-value{font-family:var(--f-mono);font-size:11px;text-align:right}
+
+.vladder{display:grid;grid-template-columns:repeat(5,1fr);height:45px}
+.vstep{position:relative;padding-top:19px;text-align:center;color:var(--card-muted);font-size:11px}
+.vstep::before{content:"";position:absolute;top:7px;left:0;right:0;height:1px;background:var(--card-line-strong)}
+.vstep i{position:absolute;top:2px;left:50%;width:10px;height:10px;transform:translateX(-50%);border:1px solid var(--card-ink);border-radius:50%;background:var(--card-bg)}
+.vstep.on i{background:var(--card-ink)}
+.vstep.current{color:var(--card-ink);font-weight:700}
+.vstep.current i{top:0;width:14px;height:14px;border-color:var(--c-seal);background:var(--c-seal);box-shadow:0 0 0 4px rgba(168,48,45,.18)}
+
+.vmirror{display:grid}
+.vmirror-row{display:grid;grid-template-columns:24px 92px 1fr;gap:10px;align-items:baseline;min-height:32px;padding:7px 0;border-bottom:1px solid var(--card-line)}
+.vmirror-row:last-child{border-bottom:0}
+.vidx{color:var(--card-muted);font-style:italic;font-size:16px}
+.vproblem{font-size:15px;font-weight:700}
+.vwhy{color:var(--card-muted);font-size:12px;line-height:1.45}
+
+.vremedy{display:grid;grid-template-columns:1.08fr .92fr;gap:20px;margin-top:2px}
+.vprescription{padding-left:11px;border-left:2px solid var(--c-seal)}
+.vred-label{color:var(--c-seal);font-size:9px;letter-spacing:.06em;font-family:var(--f-mono)}
+.vcard.t-black .vred-label{color:#e08a7a}
+.vprescription p{margin:7px 0 0;font-size:16px;line-height:1.55;font-weight:700}
+.vappeal-title{color:var(--card-muted);font-family:var(--f-mono);font-size:9px;letter-spacing:.06em}
+.vappeal ul{margin:8px 0 0;padding:0;list-style:none}
+.vappeal li{position:relative;padding-left:12px;margin-top:5px;color:var(--card-ink);font-size:12px;line-height:1.45}
+.vappeal li::before{content:"·";position:absolute;left:0;top:0;font-weight:700}
+
+.vfoot{position:absolute;left:28px;right:28px;bottom:22px;display:flex;justify-content:space-between;align-items:flex-end;z-index:2}
+.vsource{color:var(--card-muted);font-size:9px}
+.vurl{margin-top:5px;font-family:var(--f-mono);font-size:11px;font-weight:700}
+.vclosing{color:var(--card-muted);font-size:11px;line-height:1.5;text-align:right}
+.vclosing b{display:block;color:var(--card-ink);font-size:13px}
+
+@media(max-width:560px){.vcards{gap:18px;padding:4px 20px 22px}.vcard{width:min(440px,86vw);height:auto;aspect-ratio:466/828}}
+
+/* ============ 状纸 form ============ */
+.paper{background:var(--c-paper)}
+.formlede{font-family:var(--f-serif);font-weight:300;font-size:16px;line-height:1.85;color:var(--c-btn);max-width:640px;margin:0 0 36px}
+.formlede b{color:var(--c-ink);font-weight:600}
+.zhuang{border:1px solid var(--c-border-strong);background:var(--c-surface);position:relative}
+.zhuang-hd{display:flex;align-items:center;justify-content:space-between;padding:20px 30px;border-bottom:1px solid var(--c-border-strong)}
+.zh-title{font-family:var(--f-serif);font-weight:700;font-size:27px;letter-spacing:.55em;text-indent:.55em}
+.zh-seal{width:54px;height:62px;background:var(--c-seal);color:var(--c-seal-tint);font-family:var(--f-serif);font-weight:700;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;line-height:1;border:2px solid var(--c-seal-shadow);box-shadow:inset 0 0 0 1.5px var(--c-seal-shadow);transform:rotate(-3deg)}
+.zh-seal span{display:flex;align-items:center;justify-content:center;font-size:18px}
+.fields{padding:6px 30px 12px}
+.fld{display:grid;grid-template-columns:122px 1fr;gap:18px;align-items:start;padding:17px 0;border-bottom:1px solid var(--c-border-soft)}
+.fld:last-child{border-bottom:0}
+.fl-k{font-family:var(--f-serif);font-weight:600;font-size:16px;padding-top:7px}
+.fl-k em{display:block;font-style:normal;font-family:var(--f-mono);font-size:9.5px;letter-spacing:.14em;color:var(--c-muted);margin-top:5px;font-weight:400}
+.fld textarea{width:100%;resize:none;overflow:hidden;min-height:42px;font-family:var(--f-serif);font-size:15.5px;line-height:1.7;color:var(--c-ink);background:transparent;border:0;border-bottom:1px solid var(--c-border-strong);padding:6px 2px;outline:none}
+.fld textarea::placeholder{color:var(--c-muted);opacity:.62;font-weight:300}
+.fld textarea:focus{border-bottom-color:var(--c-seal)}
+.zhuang-ft{display:flex;align-items:center;gap:20px;padding:22px 30px;border-top:1px solid var(--c-border-strong);flex-wrap:wrap}
+.zhuang-ft .hint{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;color:var(--c-muted)}
+.btn-seal{background:var(--c-seal);color:var(--c-seal-tint);border-color:var(--c-seal-shadow)}
+.btn-seal:hover{background:var(--c-seal-shadow);border-color:var(--c-seal-shadow)}
+@media(max-width:600px){.fld{grid-template-columns:1fr;gap:4px}.zhuang-hd,.fields,.zhuang-ft{padding-left:20px;padding-right:20px}}
+
+/* prompt output */
+.prompt-wrap{margin-top:26px;border:1px solid var(--c-ink);background:var(--c-ink);color:var(--c-on-dark)}
+.pw-hd{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 20px;border-bottom:1px solid rgba(229,229,229,.18)}
+.pw-hd .pw-t{font-family:var(--f-mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(229,229,229,.7)}
+.pw-hd .pw-targets{font-family:var(--f-mono);font-size:10px;letter-spacing:.06em;color:rgba(229,229,229,.45);text-align:right}
+.prompt-wrap pre{margin:0;padding:22px;font-family:var(--f-mono);font-size:12.5px;line-height:1.78;white-space:pre-wrap;word-break:break-word;color:rgba(229,229,229,.92);max-height:440px;overflow:auto}
+.pw-actions{display:flex;align-items:center;gap:16px;padding:18px 20px;border-top:1px solid rgba(229,229,229,.18);background:rgba(255,255,255,.03)}
+.btn-copy{flex:1;font-family:var(--f-serif);font-weight:700;font-size:16px;letter-spacing:.1em;padding:16px 24px;border:1px solid var(--c-on-dark);background:var(--c-on-dark);color:var(--c-ink);cursor:pointer;transition:.18s;display:inline-flex;align-items:center;justify-content:center;gap:10px}
+.btn-copy:hover{background:#fff;border-color:#fff}
+.btn-copy.done{background:var(--c-seal);border-color:var(--c-seal);color:var(--c-seal-tint)}
+.btn-copy .ar{font-family:var(--f-mono);font-weight:600}
+.pw-actions .pw-note{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.06em;color:rgba(229,229,229,.5);white-space:nowrap}
+@media(max-width:600px){.pw-actions{flex-direction:column;align-items:stretch}.pw-hd .pw-targets{display:none}}
+
+/* ============ footer ============ */
+.ft{background:var(--c-footer-bg);color:var(--c-footer-fg);border-top:1px solid rgba(229,229,229,.12)}
+.ft .col{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;padding:26px 32px;font-family:var(--f-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase}
+.ft b{color:var(--c-footer-strong);font-family:var(--f-serif);font-weight:600;font-size:14px;letter-spacing:.1em;text-transform:none}
+.ft .lab{color:var(--c-footer-strong);border:1px solid rgba(229,229,229,.28);padding:7px 14px;transition:.18s}
+.ft .lab:hover{background:var(--c-footer-strong);color:var(--c-footer-bg);border-color:var(--c-footer-strong)}
+</style>
+</head>
+<body>
+
+<!-- ============ TOP BAR ============ -->
+<header class="bar">
+  <div class="col">
+    <a class="lock" href="#top">
+      <span class="logo"><img src="assets/bao-dark.png" alt="包青天"></span>
+      <span><b>包青天</b><i>.skill · idea court</i></span>
+    </a>
+    <a class="cta" href="#submit">递上状纸 →</a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="wm"><img src="assets/bao-dark.png" alt=""></div>
+  <div class="seal"><span>包</span><span>拯</span><span>之</span><span>印</span></div>
+  <div class="col">
+    <div class="kick">
+      <span>立案</span><span class="dot"></span><span>举证</span><span class="dot"></span><span>翻案</span><span class="dot"></span><span>准生</span>
+    </div>
+    <h1>铁面无私<br>判需求</h1>
+    <div class="sub">带证据来，证明不是伪需求。</div>
+    <p class="lede">未上线的 idea，最大的问题不是不好，而是<b>你拿来的不是证据，是热情、想象和"我觉得"</b>。包青天不打分讨好你——它升堂、审案、判词，再给你一条翻案的路。</p>
+    <div class="acts">
+      <a class="btn btn-fill" href="#submit">递上状纸 <span class="ar">→</span></a>
+      <a class="btn btn-ghost" href="#sample">看判牍卡样例</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 判牍卡样例 ============ -->
+<section class="sec sample" id="sample">
+  <div class="col">
+    <div class="slab">
+      <div class="t">判牍卡 · 三档</div>
+      <div class="n">Verdict Cards · 黑 / 灰 / 白</div>
+    </div>
+  </div>
+
+  <div class="vgallery">
+    <div class="vcards">
+
+      <article class="vcard t-black" style="--score:34">
+        <img class="vwm" src="assets/bao-light.png" alt="" />
+        <div class="vseal"><span>包</span><span>拯</span><span>之</span><span>印</span></div>
+        <div class="vscene">
+          <div class="vbrand"><img src="assets/bao-light.png" alt="" /><div><b>包青天</b><span>IDEA COURT · 需求判牍</span></div></div>
+          <div class="vcaseno">案卷 · 004</div>
+        </div>
+        <div class="vtitle">
+          <h3>老人个人传记</h3>
+          <div class="vsubtitle">给父母拍一部人生纪录片，替代零散回忆与节日闲聊。</div>
+          <div class="vverdict"><span class="vtag">伪需求 · 不予立案</span><span class="vverdict-text">判词 <b>劝退 · 证据不足</b></span></div>
+        </div>
+        <div class="vrule"></div>
+        <div class="vlabel">准生指数 · 四维评分 <b>证据力：口供 1/5</b></div>
+        <div class="vmetrics">
+          <div class="vgauge"><div class="vnum"><strong>34</strong><small>准生指数</small></div></div>
+          <div class="vbars">
+            <div class="vbar"><span class="vbar-name">需求真度</span><span class="vtrack"><i class="vfill" style="--v:40%"></i></span><span class="vbar-value">40</span></div>
+            <div class="vbar"><span class="vbar-name">付费可能</span><span class="vtrack"><i class="vfill" style="--v:22%"></i></span><span class="vbar-value">22</span></div>
+            <div class="vbar"><span class="vbar-name">分发可达</span><span class="vtrack"><i class="vfill" style="--v:30%"></i></span><span class="vbar-value">30</span></div>
+            <div class="vbar"><span class="vbar-name">创始人匹配</span><span class="vtrack"><i class="vfill" style="--v:45%"></i></span><span class="vbar-value">45</span></div>
+          </div>
+        </div>
+        <div class="vrule"></div>
+        <div class="vladder">
+          <div class="vstep current"><i></i>口供</div>
+          <div class="vstep"><i></i>旁证</div>
+          <div class="vstep"><i></i>物证</div>
+          <div class="vstep"><i></i>银票</div>
+          <div class="vstep"><i></i>血书</div>
+        </div>
+        <div class="vrule"></div>
+        <div class="vlabel">照妖镜 · 三大死因</div>
+        <div class="vmirror">
+          <div class="vmirror-row"><span class="vidx">壹</span><span class="vproblem">全是"我觉得"</span><span class="vwhy">只有自己想做，拿不出一条用户原话</span></div>
+          <div class="vmirror-row"><span class="vidx">贰</span><span class="vproblem">需求一生一次</span><span class="vwhy">极低频，撑不起任何工具型产品</span></div>
+          <div class="vmirror-row"><span class="vidx">叁</span><span class="vproblem">交付重到离谱</span><span class="vwhy">纪录片牵涉拍摄与影像修复，一单亏一单</span></div>
+        </div>
+        <div class="vrule"></div>
+        <div class="vremedy">
+          <div class="vprescription"><div class="vred-label">本案判语</div><p>先别开发。拿真人原话和定金来，才有立案资格。</p></div>
+          <div class="vappeal"><div class="vappeal-title">七日补证</div><ul><li>访谈 5 位子女</li><li>拿到 3 条原话</li><li>收 1 笔定金再来</li></ul></div>
+        </div>
+        <div class="vfoot">
+          <div><div class="vsource">包青天.skill · 需求判牍</div><div class="vurl">b.caojuege.com</div></div>
+          <div class="vclosing"><b>不杀热情，只杀幻想</b>先指出问题，再指出活路</div>
+        </div>
+      </article>
+
+      <article class="vcard t-gray" style="--score:58">
+        <img class="vwm" src="assets/bao-dark.png" alt="" />
+        <div class="vseal"><span>包</span><span>拯</span><span>之</span><span>印</span></div>
+        <div class="vscene">
+          <div class="vbrand"><img src="assets/bao-dark.png" alt="" /><div><b>包青天</b><span>IDEA COURT · 需求判牍</span></div></div>
+          <div class="vcaseno">案卷 · 005</div>
+        </div>
+        <div class="vtitle">
+          <h3>微信语音学英语</h3>
+          <div class="vsubtitle">小学生异步英语陪练，让孩子像发语音一样开口。</div>
+          <div class="vverdict"><span class="vtag">有希望 · 准予翻案</span><span class="vverdict-text">判词 <b>需补证 · Service First</b></span></div>
+        </div>
+        <div class="vrule"></div>
+        <div class="vlabel">准生指数 · 四维评分 <b>证据力：旁证 2/5</b></div>
+        <div class="vmetrics">
+          <div class="vgauge"><div class="vnum"><strong>58</strong><small>准生指数</small></div></div>
+          <div class="vbars">
+            <div class="vbar"><span class="vbar-name">需求真度</span><span class="vtrack"><i class="vfill" style="--v:72%"></i></span><span class="vbar-value">72</span></div>
+            <div class="vbar"><span class="vbar-name">付费可能</span><span class="vtrack"><i class="vfill" style="--v:54%"></i></span><span class="vbar-value">54</span></div>
+            <div class="vbar"><span class="vbar-name">分发可达</span><span class="vtrack"><i class="vfill" style="--v:50%"></i></span><span class="vbar-value">50</span></div>
+            <div class="vbar"><span class="vbar-name">创始人匹配</span><span class="vtrack"><i class="vfill" style="--v:74%"></i></span><span class="vbar-value">74</span></div>
+          </div>
+        </div>
+        <div class="vrule"></div>
+        <div class="vladder">
+          <div class="vstep on"><i></i>口供</div>
+          <div class="vstep current"><i></i>旁证</div>
+          <div class="vstep"><i></i>物证</div>
+          <div class="vstep"><i></i>银票</div>
+          <div class="vstep"><i></i>血书</div>
+        </div>
+        <div class="vrule"></div>
+        <div class="vlabel">照妖镜 · 三大死因</div>
+        <div class="vmirror">
+          <div class="vmirror-row"><span class="vidx">壹</span><span class="vproblem">付费人错位</span><span class="vwhy">孩子是用户，家长才付钱，需双重满意</span></div>
+          <div class="vmirror-row"><span class="vidx">贰</span><span class="vproblem">场景太泛</span><span class="vwhy">"学英语"太大，先切口语陪练</span></div>
+          <div class="vmirror-row"><span class="vidx">叁</span><span class="vproblem">效果难证</span><span class="vwhy">兴趣、开口和进步必须可观察</span></div>
+        </div>
+        <div class="vrule"></div>
+        <div class="vremedy">
+          <div class="vprescription"><div class="vred-label">本案进一步</div><p>方向成立，但证据只到旁证。先做 7 天微信语音陪练。</p></div>
+          <div class="vappeal"><div class="vappeal-title">七日翻案</div><ul><li>找 5 个家庭试用</li><li>完成 7 天语音陪练</li><li>让 2 位家长续费</li></ul></div>
+        </div>
+        <div class="vfoot">
+          <div><div class="vsource">包青天.skill · 需求判牍</div><div class="vurl">b.caojuege.com</div></div>
+          <div class="vclosing"><b>不杀热情，只杀幻想</b>先指出问题，再指出活路</div>
+        </div>
+      </article>
+
+      <article class="vcard t-white" style="--score:76">
+        <img class="vwm" src="assets/bao-dark.png" alt="" />
+        <div class="vseal"><span>包</span><span>拯</span><span>之</span><span>印</span></div>
+        <div class="vscene">
+          <div class="vbrand"><img src="assets/bao-dark.png" alt="" /><div><b>包青天</b><span>IDEA COURT · 需求判牍</span></div></div>
+          <div class="vcaseno">案卷 · 006</div>
+        </div>
+        <div class="vtitle">
+          <h3>司马迁 skill</h3>
+          <div class="vsubtitle">轻列传 30 秒一张图，精列传 30 分钟一套个人 OS。</div>
+          <div class="vverdict"><span class="vtag">准予试做 · 需补证</span><span class="vverdict-text">判词 <b>作者气质强 · 先做服务</b></span></div>
+        </div>
+        <div class="vrule"></div>
+        <div class="vlabel">准生指数 · 四维评分 <b>证据力：物证 3/5</b></div>
+        <div class="vmetrics">
+          <div class="vgauge"><div class="vnum"><strong>76</strong><small>准生指数</small></div></div>
+          <div class="vbars">
+            <div class="vbar"><span class="vbar-name">需求真度</span><span class="vtrack"><i class="vfill" style="--v:78%"></i></span><span class="vbar-value">78</span></div>
+            <div class="vbar"><span class="vbar-name">付费可能</span><span class="vtrack"><i class="vfill" style="--v:62%"></i></span><span class="vbar-value">62</span></div>
+            <div class="vbar"><span class="vbar-name">分发可达</span><span class="vtrack"><i class="vfill" style="--v:74%"></i></span><span class="vbar-value">74</span></div>
+            <div class="vbar"><span class="vbar-name">创始人匹配</span><span class="vtrack"><i class="vfill" style="--v:88%"></i></span><span class="vbar-value">88</span></div>
+          </div>
+        </div>
+        <div class="vrule"></div>
+        <div class="vladder">
+          <div class="vstep on"><i></i>口供</div>
+          <div class="vstep on"><i></i>旁证</div>
+          <div class="vstep current"><i></i>物证</div>
+          <div class="vstep"><i></i>银票</div>
+          <div class="vstep"><i></i>血书</div>
+        </div>
+        <div class="vrule"></div>
+        <div class="vlabel">过堂复核 · 三处叮嘱</div>
+        <div class="vmirror">
+          <div class="vmirror-row"><span class="vidx">壹</span><span class="vproblem">气质已成</span><span class="vwhy">名字、视觉和叙事都有作者性，适合展示</span></div>
+          <div class="vmirror-row"><span class="vidx">贰</span><span class="vproblem">付费未硬</span><span class="vwhy">自我理解很重要，但需证明谁会持续买单</span></div>
+          <div class="vmirror-row"><span class="vidx">叁</span><span class="vproblem">交付分层</span><span class="vwhy">轻列传适合传播，精列传才可能收费</span></div>
+        </div>
+        <div class="vrule"></div>
+        <div class="vremedy">
+          <div class="vprescription"><div class="vred-label">本案判语</div><p>先保留作者气质，做成个人 OS 服务，不急着 SaaS。</p></div>
+          <div class="vappeal"><div class="vappeal-title">开工首役</div><ul><li>发布 20 张轻列传</li><li>交付 3 套精列传</li><li>验证 1 个付费档位</li></ul></div>
+        </div>
+        <div class="vfoot">
+          <div><div class="vsource">包青天.skill · 需求判牍</div><div class="vurl">b.caojuege.com</div></div>
+          <div class="vclosing"><b>不杀热情，只杀幻想</b>先指出问题，再指出活路</div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ 状纸 FORM ============ -->
+<section class="sec paper" id="submit">
+  <div class="col">
+    <div class="slab">
+      <div class="t">递状纸 · 呈堂</div>
+      <div class="n">File Your Case · 一键生成判词</div>
+    </div>
+    <p class="formlede">照实填写下方状纸——<b>填得越实、证据越硬，判词越准</b>。填好点「生成呈堂提示词」，复制发给 Claude Code、Codex 或任意大模型，包青天即刻升堂，回你一纸判词。</p>
+    <div class="zhuang">
+      <div class="zhuang-hd">
+        <div class="zh-title">状纸</div>
+        <div class="zh-seal"><span>包</span><span>拯</span><span>之</span><span>印</span></div>
+      </div>
+      <div class="fields">
+        <label class="fld"><span class="fl-k">我想做<em>WHAT</em></span><textarea data-k="want" rows="1" placeholder="一句话说清你要做的东西。例：给独居老人做一本 8–12 页的 PDF 个人小传"></textarea></label>
+        <label class="fld"><span class="fl-k">用户是谁<em>WHO</em></span><textarea data-k="who" rows="1" placeholder="一张具体的脸，别写&quot;所有人&quot;。例：50–65 岁、给父母尽孝的城市子女"></textarea></label>
+        <label class="fld"><span class="fl-k">使用场景<em>WHEN</em></span><textarea data-k="scene" rows="1" placeholder="什么时刻会想起它？例：父母大寿 / 退休 / 生病住院后"></textarea></label>
+        <label class="fld"><span class="fl-k">现在怎么解决<em>NOW</em></span><textarea data-k="alt" rows="1" placeholder="没有替代方案的需求往往是假的。例：找写手代笔、自己用 Word 拼"></textarea></label>
+        <label class="fld"><span class="fl-k">不解决的代价<em>PAIN</em></span><textarea data-k="cost" rows="1" placeholder="疼不疼？疼到什么程度。例：老人走后追悔莫及，但平时不急"></textarea></label>
+        <label class="fld"><span class="fl-k">愿意付出什么<em>PAY</em></span><textarea data-k="pay" rows="1" placeholder="钱、时间，还是只是一句&quot;挺好&quot;。例：愿付 200–500 元成书"></textarea></label>
+        <label class="fld"><span class="fl-k">我已有证据<em>PROOF</em></span><textarea data-k="evi" rows="1" placeholder="按证据力写：口供 / 旁证 / 物证 / 银票 / 血书。例：3 条用户原话 + 1 笔定金"></textarea></label>
+        <label class="fld"><span class="fl-k">为什么是我<em>WHY ME</em></span><textarea data-k="me" rows="1" placeholder="你比别人多了什么。例：自己做过 5 单手工小传，攒下流程"></textarea></label>
+      </div>
+      <div class="zhuang-ft">
+        <button id="gen" class="btn btn-seal">生成呈堂提示词 <span class="ar">→</span></button>
+        <span class="hint">不联网、不上传——只在本机拼成提示词</span>
+      </div>
+    </div>
+    <div class="prompt-wrap" id="promptWrap" hidden>
+      <div class="pw-hd"><span class="pw-t">呈堂提示词 · Prompt</span><span class="pw-targets">发往 → Claude Code · Codex · ChatGPT · 任意大模型</span></div>
+      <pre id="promptOut"></pre>
+      <div class="pw-actions">
+        <button id="copyBtn" class="btn-copy">复制提示词 <span class="ar">→</span></button>
+        <span class="pw-note">复制后粘给大模型，即得一纸判词</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="ft">
+  <div class="col">
+    <b>包青天.skill</b>
+    <span>铁面无私判需求 · 立案 / 举证 / 翻案 / 准生</span>
+    <span>b.caojuege.com</span>
+    <a class="lab" href="https://caojuege.com" target="_blank" rel="noopener">草诀歌 AI Labs ↗</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // auto-grow textareas
+  function grow(el){el.style.height='auto';el.style.height=(el.scrollHeight)+'px';}
+  document.querySelectorAll('.fld textarea').forEach(function(t){
+    t.addEventListener('input',function(){grow(t);});
+  });
+  function val(k){var el=document.querySelector('[data-k="'+k+'"]');var v=el?el.value.trim():'';return v||'（未填）';}
+  function build(){
+    return [
+'你是「包青天」——一个铁面无私的需求审判官，宋代判官的口吻：威严、犯利、不留情面，但句句中肯。',
+'',
+'【激活 Skill · 包青天】',
+'· 原则：不杀热情，只杀幻想；只认证据，不认“我觉得”。',
+'· 证据力五级（由低到高）：口供 ＜ 旁证 ＜ 物证 ＜ 银票 ＜ 血书。',
+'· 判词五等：不予立案 / 押后再审 / 准予翻案 / 准予试做 / 准予开工。',
+'',
+'【状纸】',
+'我想做：'+val('want'),
+'用户是谁：'+val('who'),
+'使用场景：'+val('scene'),
+'现在的替代方案：'+val('alt'),
+'不解决的代价：'+val('cost'),
+'愿意付出什么：'+val('pay'),
+'我已有的证据：'+val('evi'),
+'为什么是我：'+val('me'),
+'',
+'【请按此格式回我判词】',
+'立案等级：（五等之一）',
+'伪需求嫌疑：（高 / 中 / 低，并说明）',
+'关键死因：',
+'最强证据：',
+'最大缺口：',
+'准予 / 不准予翻案：',
+'七日补证任务：（三条可立刻执行的补证动作）'
+    ].join('\n');
+  }
+  var gen=document.getElementById('gen');
+  var wrap=document.getElementById('promptWrap');
+  var out=document.getElementById('promptOut');
+  var copy=document.getElementById('copyBtn');
+  if(gen){gen.addEventListener('click',function(){
+    out.textContent=build();
+    wrap.hidden=false;
+    var y=wrap.getBoundingClientRect().top+window.scrollY-80;
+    window.scrollTo({top:y,behavior:'smooth'});
+  });}
+  if(copy){copy.addEventListener('click',function(){
+    var t=out.textContent;
+    function ok(){copy.classList.add('done');copy.innerHTML='已复制 ✓';setTimeout(function(){copy.classList.remove('done');copy.innerHTML='复制提示词 <span class="ar">→</span>';},1600);}
+    function fb(){var ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand('copy');ok();}catch(e){}document.body.removeChild(ta);}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,fb);}else{fb();}
+  });}
+})();
+</script>
+
+</body>
+</html>
