@@ -223,6 +223,13 @@ section{border-bottom:1px solid var(--c-border-soft)}
 .paper{background:var(--c-paper)}
 .formlede{font-family:var(--f-serif);font-weight:300;font-size:16px;line-height:1.85;color:var(--c-btn);max-width:640px;margin:0 0 36px}
 .formlede b{color:var(--c-ink);font-weight:600}
+.skill-callout{border:1px solid var(--c-border-strong);background:rgba(255,255,255,.38);padding:20px 22px;margin:-14px 0 28px;display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center}
+.skill-callout .sc-k{font-family:var(--f-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--c-seal);margin-bottom:8px}
+.skill-callout .sc-t{font-family:var(--f-serif);font-size:22px;font-weight:700;letter-spacing:.06em;margin-bottom:6px}
+.skill-callout .sc-p{font-size:13.5px;line-height:1.75;color:var(--c-btn);max-width:620px}
+.skill-callout code{display:inline-block;margin-top:9px;font-family:var(--f-mono);font-size:11px;letter-spacing:.04em;color:var(--c-ink);background:rgba(20,20,20,.06);border:1px solid var(--c-border-soft);padding:5px 7px}
+.skill-callout .sc-a{white-space:nowrap}
+.skill-callout .btn{padding:12px 18px;font-size:14px}
 .zhuang{border:1px solid var(--c-border-strong);background:var(--c-surface);position:relative}
 .zhuang-hd{display:flex;align-items:center;justify-content:space-between;padding:20px 30px;border-bottom:1px solid var(--c-border-strong)}
 .zh-title{font-family:var(--f-serif);font-weight:700;font-size:27px;letter-spacing:.55em;text-indent:.55em}
@@ -240,6 +247,7 @@ section{border-bottom:1px solid var(--c-border-soft)}
 .zhuang-ft .hint{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;color:var(--c-muted)}
 .btn-seal{background:var(--c-seal);color:var(--c-seal-tint);border-color:var(--c-seal-shadow)}
 .btn-seal:hover{background:var(--c-seal-shadow);border-color:var(--c-seal-shadow)}
+@media(max-width:720px){.skill-callout{grid-template-columns:1fr}.skill-callout .sc-a{white-space:normal}}
 @media(max-width:600px){.fld{grid-template-columns:1fr;gap:4px}.zhuang-hd,.fields,.zhuang-ft{padding-left:20px;padding-right:20px}}
 
 /* prompt output */
@@ -465,7 +473,18 @@ section{border-bottom:1px solid var(--c-border-soft)}
       <div class="t">递状纸 · 呈堂</div>
       <div class="n">File Your Case · 一键生成判词</div>
     </div>
-    <p class="formlede">照实填写下方状纸——<b>填得越实、证据越硬，判词越准</b>。填好点「生成呈堂提示词」，复制发给 Claude Code、Codex 或任意大模型，包青天即刻升堂，回你一纸判词。</p>
+    <p class="formlede">照实填写下方状纸——<b>填得越实、证据越硬，判词越准</b>。正式版请用包青天 Skill，能生成同款 HTML 判牍卡和详细判词；下方仍保留体验版提示词。</p>
+    <div class="skill-callout">
+      <div>
+        <div class="sc-k">Official Skill</div>
+        <div class="sc-t">装上 Skill，再请包公升堂</div>
+        <div class="sc-p">Skill 会按同一套版式输出可打开、可截图、可分享的 HTML 判牍卡，并附详细判词。提示词体验版适合先试口味，正式交付走 Skill。</div>
+        <code>用包青天审一下这个 idea：</code>
+      </div>
+      <div class="sc-a">
+        <a class="btn" href="https://github.com/ShaohuaDavidLee/baoqingtian/tree/main/skills/baoqingtian" target="_blank" rel="noopener">查看 Skill <span class="ar">→</span></a>
+      </div>
+    </div>
     <div class="zhuang">
       <div class="zhuang-hd">
         <div class="zh-title">状纸</div>
@@ -482,16 +501,16 @@ section{border-bottom:1px solid var(--c-border-soft)}
         <label class="fld"><span class="fl-k">为什么是我<em>WHY ME</em></span><textarea data-k="me" rows="1" placeholder="你比别人多了什么。例：自己做过 5 单手工小传，攒下流程"></textarea></label>
       </div>
       <div class="zhuang-ft">
-        <button id="gen" class="btn btn-seal">生成呈堂提示词 <span class="ar">→</span></button>
-        <span class="hint">不联网、不上传——只在本机拼成提示词</span>
+        <button id="gen" class="btn btn-seal">生成体验版提示词 <span class="ar">→</span></button>
+        <span class="hint">体验版只拼提示词——同款视觉卡请用 Skill</span>
       </div>
     </div>
     <div class="prompt-wrap" id="promptWrap" hidden>
       <div class="pw-hd"><span class="pw-t">呈堂提示词 · Prompt</span><span class="pw-targets">发往 → Claude Code · Codex · ChatGPT · 任意大模型</span></div>
       <pre id="promptOut"></pre>
       <div class="pw-actions">
-        <button id="copyBtn" class="btn-copy">复制提示词 <span class="ar">→</span></button>
-        <span class="pw-note">复制后粘给大模型，即得一纸判词</span>
+        <button id="copyBtn" class="btn-copy">复制体验版提示词 <span class="ar">→</span></button>
+        <span class="pw-note">复制后粘给大模型试判；同款 HTML 卡走 Skill</span>
       </div>
     </div>
   </div>
@@ -597,7 +616,7 @@ section{border-bottom:1px solid var(--c-border-soft)}
   });}
   if(copy){copy.addEventListener('click',function(){
     var t=out.textContent;
-    function ok(){copy.classList.add('done');copy.innerHTML='已复制 ✓';setTimeout(function(){copy.classList.remove('done');copy.innerHTML='复制提示词 <span class="ar">→</span>';},1600);}
+    function ok(){copy.classList.add('done');copy.innerHTML='已复制 ✓';setTimeout(function(){copy.classList.remove('done');copy.innerHTML='复制体验版提示词 <span class="ar">→</span>';},1600);}
     function fb(){var ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand('copy');ok();}catch(e){}document.body.removeChild(ta);}
     if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,fb);}else{fb();}
   });}
