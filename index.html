@@ -223,13 +223,6 @@ section{border-bottom:1px solid var(--c-border-soft)}
 .paper{background:var(--c-paper)}
 .formlede{font-family:var(--f-serif);font-weight:300;font-size:16px;line-height:1.85;color:var(--c-btn);max-width:640px;margin:0 0 36px}
 .formlede b{color:var(--c-ink);font-weight:600}
-.skill-callout{border:1px solid var(--c-border-strong);background:rgba(255,255,255,.38);padding:20px 22px;margin:-14px 0 28px;display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center}
-.skill-callout .sc-k{font-family:var(--f-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--c-seal);margin-bottom:8px}
-.skill-callout .sc-t{font-family:var(--f-serif);font-size:22px;font-weight:700;letter-spacing:.06em;margin-bottom:6px}
-.skill-callout .sc-p{font-size:13.5px;line-height:1.75;color:var(--c-btn);max-width:620px}
-.skill-callout code{display:inline-block;margin-top:9px;font-family:var(--f-mono);font-size:11px;letter-spacing:.04em;color:var(--c-ink);background:rgba(20,20,20,.06);border:1px solid var(--c-border-soft);padding:5px 7px}
-.skill-callout .sc-a{white-space:nowrap}
-.skill-callout .btn{padding:12px 18px;font-size:14px}
 .zhuang{border:1px solid var(--c-border-strong);background:var(--c-surface);position:relative}
 .zhuang-hd{display:flex;align-items:center;justify-content:space-between;padding:20px 30px;border-bottom:1px solid var(--c-border-strong)}
 .zh-title{font-family:var(--f-serif);font-weight:700;font-size:27px;letter-spacing:.55em;text-indent:.55em}
@@ -245,9 +238,11 @@ section{border-bottom:1px solid var(--c-border-soft)}
 .fld textarea:focus{border-bottom-color:var(--c-seal)}
 .zhuang-ft{display:flex;align-items:center;gap:20px;padding:22px 30px;border-top:1px solid var(--c-border-strong);flex-wrap:wrap}
 .zhuang-ft .hint{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;color:var(--c-muted)}
+.zhuang-ft .copy-status{display:none;font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;color:var(--c-seal)}
+.zhuang-ft .copy-status.on{display:inline}
 .btn-seal{background:var(--c-seal);color:var(--c-seal-tint);border-color:var(--c-seal-shadow)}
 .btn-seal:hover{background:var(--c-seal-shadow);border-color:var(--c-seal-shadow)}
-@media(max-width:720px){.skill-callout{grid-template-columns:1fr}.skill-callout .sc-a{white-space:normal}}
+.btn-seal.done{background:var(--c-ink);border-color:var(--c-ink);color:var(--c-on-dark)}
 @media(max-width:600px){.fld{grid-template-columns:1fr;gap:4px}.zhuang-hd,.fields,.zhuang-ft{padding-left:20px;padding-right:20px}}
 
 /* prompt output */
@@ -257,12 +252,8 @@ section{border-bottom:1px solid var(--c-border-soft)}
 .pw-hd .pw-targets{font-family:var(--f-mono);font-size:10px;letter-spacing:.06em;color:rgba(229,229,229,.45);text-align:right}
 .prompt-wrap pre{margin:0;padding:22px;font-family:var(--f-mono);font-size:12.5px;line-height:1.78;white-space:pre-wrap;word-break:break-word;color:rgba(229,229,229,.92);max-height:440px;overflow:auto}
 .pw-actions{display:flex;align-items:center;gap:16px;padding:18px 20px;border-top:1px solid rgba(229,229,229,.18);background:rgba(255,255,255,.03)}
-.btn-copy{flex:1;font-family:var(--f-serif);font-weight:700;font-size:16px;letter-spacing:.1em;padding:16px 24px;border:1px solid var(--c-on-dark);background:var(--c-on-dark);color:var(--c-ink);cursor:pointer;transition:.18s;display:inline-flex;align-items:center;justify-content:center;gap:10px}
-.btn-copy:hover{background:#fff;border-color:#fff}
-.btn-copy.done{background:var(--c-seal);border-color:var(--c-seal);color:var(--c-seal-tint)}
-.btn-copy .ar{font-family:var(--f-mono);font-weight:600}
 .pw-actions .pw-note{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.06em;color:rgba(229,229,229,.5);white-space:nowrap}
-@media(max-width:600px){.pw-actions{flex-direction:column;align-items:stretch}.pw-hd .pw-targets{display:none}}
+@media(max-width:600px){.pw-actions{flex-direction:column;align-items:flex-start}.pw-hd .pw-targets{display:none}}
 
 /* ============ footer ============ */
 .ft{background:var(--c-footer-bg);color:var(--c-footer-fg);border-top:1px solid rgba(229,229,229,.12)}
@@ -473,18 +464,7 @@ section{border-bottom:1px solid var(--c-border-soft)}
       <div class="t">递状纸 · 呈堂</div>
       <div class="n">File Your Case · 一键生成判词</div>
     </div>
-    <p class="formlede">照实填写下方状纸——<b>填得越实、证据越硬，判词越准</b>。正式版请用包青天 Skill，能生成同款 HTML 判牍卡和详细判词；下方仍保留体验版提示词。</p>
-    <div class="skill-callout">
-      <div>
-        <div class="sc-k">Official Skill</div>
-        <div class="sc-t">装上 Skill，再请包公升堂</div>
-        <div class="sc-p">Skill 会按同一套版式输出可打开、可截图、可分享的 HTML 判牍卡，并附详细判词。提示词体验版适合先试口味，正式交付走 Skill。</div>
-        <code>用包青天审一下这个 idea：</code>
-      </div>
-      <div class="sc-a">
-        <a class="btn" href="https://github.com/ShaohuaDavidLee/baoqingtian/tree/main/skills/baoqingtian" target="_blank" rel="noopener">查看 Skill <span class="ar">→</span></a>
-      </div>
-    </div>
+    <p class="formlede">照实填写下方状纸——<b>填得越实、证据越硬，判词越准</b>。点一下「复制状纸 + Skill 指令」，会同时复制安装地址、激活句和本案状纸，直接粘给 Codex 或 ChatGPT 即可升堂。</p>
     <div class="zhuang">
       <div class="zhuang-hd">
         <div class="zh-title">状纸</div>
@@ -501,16 +481,16 @@ section{border-bottom:1px solid var(--c-border-soft)}
         <label class="fld"><span class="fl-k">为什么是我<em>WHY ME</em></span><textarea data-k="me" rows="1" placeholder="你比别人多了什么。例：自己做过 5 单手工小传，攒下流程"></textarea></label>
       </div>
       <div class="zhuang-ft">
-        <button id="gen" class="btn btn-seal">生成体验版提示词 <span class="ar">→</span></button>
-        <span class="hint">体验版只拼提示词——同款视觉卡请用 Skill</span>
+        <button id="gen" class="btn btn-seal">复制状纸 + Skill 指令 <span class="ar">→</span></button>
+        <span class="hint">已安装可直接审案；未安装按复制内容里的地址启用 Skill</span>
+        <span id="copyStatus" class="copy-status">已复制，可直接粘贴升堂</span>
       </div>
     </div>
     <div class="prompt-wrap" id="promptWrap" hidden>
-      <div class="pw-hd"><span class="pw-t">呈堂提示词 · Prompt</span><span class="pw-targets">发往 → Claude Code · Codex · ChatGPT · 任意大模型</span></div>
+      <div class="pw-hd"><span class="pw-t">已复制内容 · Skill Brief</span><span class="pw-targets">安装地址 · 激活句 · 状纸</span></div>
       <pre id="promptOut"></pre>
       <div class="pw-actions">
-        <button id="copyBtn" class="btn-copy">复制体验版提示词 <span class="ar">→</span></button>
-        <span class="pw-note">复制后粘给大模型试判；同款 HTML 卡走 Skill</span>
+        <span class="pw-note">下方仅作核对；主按钮已经完成复制。</span>
       </div>
     </div>
   </div>
@@ -536,9 +516,17 @@ section{border-bottom:1px solid var(--c-border-soft)}
   function val(k){var el=document.querySelector('[data-k="'+k+'"]');var v=el?el.value.trim():'';return v||'（未填）';}
   function build(){
     return [
-'你是「包青天」——一个铁面无私的需求审判官，宋代判官的口吻：威严、犯利、不留情面，但句句中肯。',
+'请使用「包青天」Skill 审下面这个 idea，并生成 HTML 判牍卡和详细判词。',
 '',
-'【激活 Skill · 包青天】',
+'【如果尚未安装 Skill】',
+'请先安装/启用 baoqingtian Skill：',
+'https://github.com/ShaohuaDavidLee/baoqingtian/tree/main/skills/baoqingtian',
+'',
+'【如果已经安装 Skill】',
+'直接使用下面这句激活：',
+'用包青天审一下这个 idea：',
+'',
+'【包青天原则】',
 '· 原则：不杀热情，只杀幻想；只认证据，不认“我觉得”。',
 '· 证据力五级（由低到高）：口供 ＜ 旁证 ＜ 物证 ＜ 银票 ＜ 血书。',
 '· 判词五等：不予立案 / 押后再审 / 准予翻案 / 准予试做 / 准予开工。',
@@ -554,51 +542,9 @@ section{border-bottom:1px solid var(--c-border-soft)}
 '为什么是我：'+val('me'),
 '',
 '【输出要求】',
-'必须优先生成一张可打开、可截图、可分享的「包青天 HTML 判牍卡」。不要只写散文式诊断。',
-'如果当前环境支持 HTML Artifact / Canvas / 预览页 / 可分享链接：请直接创建一个单文件 HTML 页面，并在回复第一行给出可打开的链接或入口。',
-'如果当前环境不支持生成链接：请先返回完整单文件 HTML 代码块，让用户保存为 .html 后打开；代码块之后再返回详细判词。',
-'',
-'【第一部分：HTML 判牍卡】',
-'请生成一个完整、可独立打开的 HTML 文件。要求：',
-'1. 只使用 HTML + CSS，不依赖外部图片、外部字体或外部脚本。',
-'2. 画面是一张竖版判牍卡，适合手机截图，比例接近 9:16。',
-'3. 视觉参考：灰底纸张、黑色文字、朱红印章、淡水印、圆环分数、四维进度条、证据阶梯、照妖镜三大死因、七日翻案任务。',
-'4. 卡片顶部显示「包青天 · IDEA COURT」，右上角有「包拯之印」朱印。',
-'5. 根据判决严重程度选择卡片色调：不予立案用黑底，准予翻案/试做用灰底，准予开工用白底。',
-'6. HTML 首屏必须只显示卡片本体，下面可以接详细判词。',
-'7. 卡片内必须包含以下字段：',
-'',
-'案名：根据状纸提炼，不超过 12 个字',
-'判决：五等之一',
-'准生指数：0-100 分',
-'证据力：口供 / 旁证 / 物证 / 银票 / 血书',
-'四维评分：需求真度、付费可能、分发可达、创始人匹配，每项 0-100 分',
-'照妖镜 · 三大死因：',
-'壹：问题名 —— 一句话说明',
-'贰：问题名 —— 一句话说明',
-'叁：问题名 —— 一句话说明',
-'本案判语：一句最关键的结论',
-'七日翻案：三条可执行补证任务',
-'',
-'【HTML 交付规则】',
-'如果你能创建 Artifact 或预览链接，回复格式必须是：',
-'HTML 判牍卡链接：<链接或 Artifact 名称>',
-'然后再写「详细判词」。',
-'如果你不能创建链接，回复格式必须是：',
-'HTML 判牍卡代码：',
-'```html',
-'完整 HTML 放这里',
-'```',
-'然后再写「详细判词」。',
-'',
-'【第二部分：详细判词】',
-'立案等级：（五等之一，并说明为什么）',
-'伪需求嫌疑：（高 / 中 / 低，并说明）',
-'关键死因：（逐条展开）',
-'最强证据：',
-'最大缺口：',
-'准予 / 不准予翻案：',
-'七日补证任务：（三条可立刻执行的补证动作）',
+'请优先生成一张可打开、可截图、可分享的「包青天 HTML 判牍卡」，再给出详细判词。',
+'判牍卡必须包含：案名、判决、准生指数、证据力、四维评分、照妖镜三大死因、本案判语、七日翻案任务。',
+'详细判词必须包含：立案等级、伪需求嫌疑、关键死因、最强证据、最大缺口、准予/不准予翻案、七日补证任务。',
 '',
 '【口吻要求】',
 '要像包青天审案：先指出问题，再给活路。可以有判官味，但不要写得过于文言，必须让现代创业者看得懂。'
@@ -607,18 +553,26 @@ section{border-bottom:1px solid var(--c-border-soft)}
   var gen=document.getElementById('gen');
   var wrap=document.getElementById('promptWrap');
   var out=document.getElementById('promptOut');
-  var copy=document.getElementById('copyBtn');
-  if(gen){gen.addEventListener('click',function(){
-    out.textContent=build();
-    wrap.hidden=false;
-    var y=wrap.getBoundingClientRect().top+window.scrollY-80;
-    window.scrollTo({top:y,behavior:'smooth'});
-  });}
-  if(copy){copy.addEventListener('click',function(){
-    var t=out.textContent;
-    function ok(){copy.classList.add('done');copy.innerHTML='已复制 ✓';setTimeout(function(){copy.classList.remove('done');copy.innerHTML='复制体验版提示词 <span class="ar">→</span>';},1600);}
+  var status=document.getElementById('copyStatus');
+  function copyText(t,onOk){
+    function ok(){if(onOk){onOk();}}
     function fb(){var ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand('copy');ok();}catch(e){}document.body.removeChild(ta);}
     if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,fb);}else{fb();}
+  }
+  if(gen){gen.addEventListener('click',function(){
+    var t=build();
+    out.textContent=t;
+    wrap.hidden=false;
+    copyText(t,function(){
+      if(status){status.classList.add('on');}
+      gen.classList.add('done');
+      gen.innerHTML='已复制，去升堂 ✓';
+      setTimeout(function(){
+        gen.classList.remove('done');
+        gen.innerHTML='复制状纸 + Skill 指令 <span class="ar">→</span>';
+        if(status){status.classList.remove('on');}
+      },2200);
+    });
   });}
 })();
 </script>
