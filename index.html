@@ -4,6 +4,14 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>包青天.skill · 铁面无私判需求</title>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-26BVEYKBGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-26BVEYKBGN');
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
@@ -605,6 +613,7 @@ section{border-bottom:1px solid var(--c-border-soft)}
   }
   function trackCopyEvent(){
     var props={source:'landing',path:location.pathname,has_query:location.search?'1':'0'};
+    if(window.gtag&&typeof window.gtag==='function'){window.gtag('event','copy_case_prompt',{prompt_source:props.source,page_path:props.path,has_query:props.has_query});}
     if(window.zaraz&&typeof window.zaraz.track==='function'){window.zaraz.track('copy_case_prompt',props);}
     if(window.plausible&&typeof window.plausible==='function'){window.plausible('copy_case_prompt',{props:props});}
     if(window.umami&&typeof window.umami.track==='function'){window.umami.track('copy_case_prompt',props);}
