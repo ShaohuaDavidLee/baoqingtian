@@ -66,6 +66,25 @@
 
 如果你的 agent 已经安装了包青天 Skill，它会直接升堂，输出 HTML 判牍卡和详细判词。
 
+### 重要：为什么不要让普通模型直接画卡
+
+稳定的判牍卡不是靠模型临场手写 HTML，而是靠 Skill 里的固定 renderer 生成。
+
+如果你的 agent 不能访问这个仓库、不能安装 Skill、不能运行本地脚本，或者不能读取 `assets/` 里的包青天 logo 和水印，它很可能会自由发挥：
+
+- 卡片风格漂移
+- logo / 水印缺失
+- 底部文字错乱
+- 字段顺序不稳定
+- 不同 agent 输出完全不同
+
+这种情况不是包青天在升堂，是模型在 cosplay。
+
+推荐规则：
+
+- 能安装 Skill：使用 Skill，输出稳定 HTML 判牍卡 + Markdown 判词
+- 不能安装 Skill：只输出详细判词 + case JSON，不要伪造 HTML 卡片
+
 ### 方式二：在 Codex 里安装 Skill
 
 公开仓库后，可以用 Codex 的 Skill Installer 从 GitHub 安装：

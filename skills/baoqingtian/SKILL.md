@@ -12,7 +12,9 @@ Use this skill to审 idea / MVP / AI 产品 / 作品型产品. The output must i
 1. A stable visual HTML verdict card rendered from the bundled template.
 2. A detailed Markdown verdict report.
 
-Do not ask the model to freestyle card design. Generate structured case data, then run the renderer.
+The renderer is the source of truth for the card layout. Do not ask the model to freestyle card design, hand-code an alternate card, omit the logo/watermark, or return a screenshot-like imitation. Generate structured case data, then run the bundled renderer.
+
+If the runtime cannot run local scripts or cannot read the bundled `assets/`, do not fabricate a visual card. Return the detailed verdict plus the case JSON, and state that the current environment cannot produce the stable HTML card.
 
 ## Verdict Method
 
@@ -47,6 +49,12 @@ python3 ~/.codex/skills/baoqingtian/scripts/render_verdict.py --case-json /path/
 ```
 
 5. Return the generated HTML and Markdown file links.
+
+Output contract:
+- Return the HTML card path/link first.
+- Return the Markdown verdict path/link second.
+- Briefly summarize the verdict in chat.
+- Do not paste a long handcrafted HTML card into chat unless the user explicitly asks for inline code.
 
 ## Case JSON Schema
 
@@ -93,4 +101,3 @@ Theme selection when absent:
 - `black` for `不予立案` or score below 45.
 - `white` for `准予开工` or score 80+.
 - `gray` otherwise.
-
