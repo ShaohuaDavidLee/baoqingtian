@@ -139,9 +139,6 @@ python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-githu
 - AI 产品判断：Google PAIR、Microsoft Human-AI Guidelines、NIST AI RMF、OpenAI / Anthropic evals
 - 草诀歌 AI Labs 方法论：作品型产品
 
-我更关心的问题不是「这个东西看起来酷不酷」，而是：
-
-> 什么人，在什么场景下，愿意花多少钱，来解决什么问题？
 
 ## 项目结构
 
