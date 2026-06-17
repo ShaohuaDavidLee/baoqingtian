@@ -250,6 +250,8 @@ section{border-bottom:1px solid var(--c-border-soft)}
 .paper{background:var(--c-paper)}
 .formlede{font-family:var(--f-serif);font-weight:300;font-size:16px;line-height:1.85;color:var(--c-btn);max-width:640px;margin:0 0 36px}
 .formlede b{color:var(--c-ink);font-weight:600}
+.privacy-note{max-width:680px;margin:-18px 0 28px;padding:13px 16px;border-left:3px solid var(--c-seal);background:var(--c-surface-2);font-size:13.5px;line-height:1.75;color:var(--c-btn)}
+.privacy-note b{color:var(--c-ink);font-weight:600}
 .zhuang{border:1px solid var(--c-border-strong);background:var(--c-surface);position:relative}
 .zhuang-hd{display:flex;align-items:center;justify-content:space-between;padding:20px 30px;border-bottom:1px solid var(--c-border-strong)}
 .zh-title{font-family:var(--f-serif);font-weight:700;font-size:27px;letter-spacing:.55em;text-indent:.55em}
@@ -272,6 +274,7 @@ section{border-bottom:1px solid var(--c-border-soft)}
 .btn-seal.done{background:var(--c-ink);border-color:var(--c-ink);color:var(--c-on-dark)}
 @media(max-width:600px){
   .fld{grid-template-columns:1fr;gap:4px}
+  .privacy-note{margin-top:-14px;font-size:13px}
   .zhuang-hd,.fields,.zhuang-ft{padding-left:20px;padding-right:20px}
   .fld textarea{min-height:132px;line-height:1.85;font-size:14.5px;overflow-wrap:anywhere}
 }
@@ -496,6 +499,7 @@ section{border-bottom:1px solid var(--c-border-soft)}
       <div class="n">File Your Case · 一键生成判词</div>
     </div>
     <p class="formlede">照实填写下方状纸——<b>填得越实、证据越硬，判词越准</b>。点一下「复制状纸 + Skill 指令」，会同时复制安装地址、激活句和本案状纸，直接粘给Codex/Claudecode/Kimi/OpenClaw等智能体即可升堂。</p>
+    <p class="privacy-note"><b>隐私说明：</b>本页只负责提示词拼接，包青天不偷你的 idea。复制后你粘给哪个 agent，就由那个 agent 的隐私政策负责。敏感项目建议先脱敏。</p>
     <div class="zhuang">
       <div class="zhuang-hd">
         <div class="zh-title">状纸</div>
@@ -599,11 +603,18 @@ section{border-bottom:1px solid var(--c-border-soft)}
     function fb(){var ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand('copy');ok();}catch(e){}document.body.removeChild(ta);}
     if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,fb);}else{fb();}
   }
+  function trackCopyEvent(){
+    var props={source:'landing',path:location.pathname,has_query:location.search?'1':'0'};
+    if(window.zaraz&&typeof window.zaraz.track==='function'){window.zaraz.track('copy_case_prompt',props);}
+    if(window.plausible&&typeof window.plausible==='function'){window.plausible('copy_case_prompt',{props:props});}
+    if(window.umami&&typeof window.umami.track==='function'){window.umami.track('copy_case_prompt',props);}
+  }
   if(gen){gen.addEventListener('click',function(){
     var t=build();
     out.textContent=t;
     wrap.hidden=false;
     copyText(t,function(){
+      trackCopyEvent();
       if(status){status.classList.add('on');}
       gen.classList.add('done');
       gen.innerHTML='已复制，去升堂 ✓';
