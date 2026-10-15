@@ -61,7 +61,7 @@ def metric_rows(metrics):
 
 
 def ladder_html(level):
-    idx = LEVELS.index(level) if level in LEVELS else 0
+    idx = LEVELS.index(level) if level in LEVELS else -1  # 不计：五级都不点亮
     parts = []
     for i, name in enumerate(LEVELS):
         cls = "step current" if i == idx else ("step on" if i < idx else "step")
@@ -105,6 +105,18 @@ def detail_markdown(case):
     ]
     for i, item in enumerate(d.get("key_deaths") or [], 1):
         lines.append(f"{i}. {item}")
+    ledger = d.get("evidence_ledger") or []
+    if ledger:
+        lines += ["", "## 证据清单", ""]
+        for i, item in enumerate(ledger, 1):
+            if isinstance(item, dict):
+                kind = item.get("kind", "")
+                level = item.get("level", "")
+                tag = " · ".join(x for x in (level, kind) if x)
+                text = item.get("item", "")
+                lines.append(f"{i}. 【{tag}】{text}" if tag else f"{i}. {text}")
+            else:
+                lines.append(f"{i}. {item}")
     lines += [
         "",
         "## 最强证据",
@@ -137,7 +149,7 @@ def detail_html(markdown_text):
             blocks.append(f"<h1>{esc(line[2:])}</h1>")
         elif line.startswith("## "):
             blocks.append(f"<h2>{esc(line[3:])}</h2>")
-        elif re.match(r"^\\d+\\.\\s+", line):
+        elif re.match(r"^\d+\.\s+", line):
             blocks.append(f"<p class=\"ordered\">{esc(line)}</p>")
         else:
             blocks.append(f"<p>{esc(line)}</p>")
