@@ -1,0 +1,12 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "skills": [
+    {
+      "name": "baoqingtian",
+      "description": "Use when judging an early product idea, MVP, AI tool, creator product, or launched demo with Baoqingtian-style demand evidence, verdicts, seven-day validation tasks, and a visual verdict card.",
+      "type": "archive",
+      "url": "https://b.caojuege.com/downloads/agent-baoqingtian-fc9f43d2322d8e25.zip",
+      "digest": "sha256:fc9f43d2322d8e25be9284d8f59ea1fefdd56bc3d1ccd585cc5f11dd4f630f58"
+    }
+  ]
+}
