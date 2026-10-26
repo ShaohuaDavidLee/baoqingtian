@@ -1,0 +1,6 @@
+.git/
+.wrangler/
+**/__pycache__/
+**/*.pyc
+*.log
+wrangler.jsonc
