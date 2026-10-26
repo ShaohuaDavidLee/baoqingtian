@@ -1,0 +1,12 @@
+# 包青天.skill
+
+> 公开页面与技能的读取入口。技能在使用者自己的 agent 环境运行；本站不提供在线 MCP 服务。
+
+## 站点说明
+
+- [包青天.skill · 铁面无私判需求](https://b.caojuege.com/index.md)
+
+## Skills
+
+- [机器可读索引](https://b.caojuege.com/.well-known/agent-skills/index.json)
+- [baoqingtian](https://b.caojuege.com/downloads/agent-baoqingtian-fc9f43d2322d8e25.zip)：Use when judging an early product idea, MVP, AI tool, creator product, or launched demo with Baoqingtian-style demand evidence, verdicts, seven-day validation tasks, and a visual verdict card.
